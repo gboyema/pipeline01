@@ -1,10 +1,11 @@
-Jenkinsfile (Scripted Pipeline)
-/* Requires the Docker Pipeline plugin */
-node('docker') {
-    checkout scm
-    stage('Build') {
-        docker.image('maven:3.3.3').inside {
-            sh 'mvn --version'
+Jenkinsfile (Declarative Pipeline)
+pipeline {
+    agent { docker 'node:6.3' }
+    stages {
+        stage('build') {
+            steps {
+                sh 'npm --version'
+            }
         }
     }
 }
